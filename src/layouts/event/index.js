@@ -16,27 +16,20 @@ Coded by www.creative-tim.com
 // @mui material components
 // import Grid from "@mui/material/Grid";
 
-// Material Dashboard 2 React components
-import MDBox from "components/MDBox";
-
 // Material Dashboard 2 React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
 
-// Dashboard components
-import Calendar from 'layouts/dashboard/components/calendar'
 
-function Dashboard() {
+function Event() {
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      <MDBox>
-        <Calendar />
-      </MDBox>
+      <h1>Event</h1>
       <Footer />
     </DashboardLayout>
   );
 }
 
-export default Dashboard;
+export default Event;

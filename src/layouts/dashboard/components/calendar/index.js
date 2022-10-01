@@ -26,17 +26,34 @@ import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 
 // Material Dashboard 2 React examples
-import DataTable from "examples/Tables/DataTable";
+import FullCalendar from '@fullcalendar/react';
+import dayGridPlugin from '@fullcalendar/daygrid';
 
 // Data
-import data from "layouts/dashboard/components/Projects/data";
+import data from "layouts/events/components/Projects/data";
 
-function Projects() {
+import { useNavigate } from "react-router-dom";
+
+
+function Calendar() {
   const { columns, rows } = data();
   const [menu, setMenu] = useState(null);
 
   const openMenu = ({ currentTarget }) => setMenu(currentTarget);
   const closeMenu = () => setMenu(null);
+  
+  let navigate = useNavigate(); 
+  
+  const eventClick = (info) => {
+    console.log('Event: ' + info.event.title);
+    console.log('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
+    console.log('View: ' + info.view.type);
+
+    let path = `/event`; 
+    navigate(path); 
+    // change the border color just for fun
+    info.el.style.borderColor = 'red';
+  }
 
   const renderMenu = (
     <Menu
@@ -66,20 +83,6 @@ function Projects() {
           <MDTypography variant="h6" gutterBottom>
             Events
           </MDTypography>
-          <MDBox display="flex" alignItems="center" lineHeight={0}>
-            <Icon
-              sx={{
-                fontWeight: "bold",
-                color: ({ palette: { info } }) => info.main,
-                mt: -0.5,
-              }}
-            >
-              done
-            </Icon>
-            <MDTypography variant="button" fontWeight="regular" color="text">
-              &nbsp;<strong>30 done</strong> this month
-            </MDTypography>
-          </MDBox>
         </MDBox>
         <MDBox color="text" px={2}>
           <Icon sx={{ cursor: "pointer", fontWeight: "bold" }} fontSize="small" onClick={openMenu}>
@@ -88,17 +91,26 @@ function Projects() {
         </MDBox>
         {renderMenu}
       </MDBox>
-      <MDBox>
-        <DataTable
-          table={{ columns, rows }}
-          showTotalEntries={false}
-          isSorted={false}
-          noEndBorder
-          entriesPerPage={false}
+      <MDBox color="text">
+
+        <FullCalendar
+          plugins={[dayGridPlugin]}
+          initialView="dayGridMonth"
+          events={[
+            { title: 'event 1', date: '2022-10-01' },
+            { title: 'event 2', date: '2022-10-01' },
+            { title: 'event 3', date: '2022-10-01' },
+            { title: 'event 4', date: '2022-10-02' },
+            { title: 'event 5', date: '2022-10-02' },
+            { title: 'event 6', date: '2022-10-02' },
+            { title: 'event 6', date: '2022-10-03' },
+          ]}
+          eventClick={eventClick}
         />
+
       </MDBox>
     </Card>
   );
 }
 
-export default Projects;
+export default Calendar;

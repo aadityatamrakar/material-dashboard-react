@@ -37,6 +37,7 @@ Coded by www.creative-tim.com
 
 // Material Dashboard 2 React layouts
 import Dashboard from "layouts/dashboard";
+import Events from "layouts/events";
 
 // @mui icons
 import Icon from "@mui/material/Icon";
@@ -44,11 +45,19 @@ import Icon from "@mui/material/Icon";
 const routes = [
   {
     type: "collapse",
-    name: "Events",
+    name: "Dashboard",
     key: "dashboard",
-    icon: <Icon fontSize="small">dashboard</Icon>,
+    icon: <Icon fontSize="small">calendar_month</Icon>,
     route: "/dashboard",
     component: <Dashboard />,
+  },
+  {
+    type: "collapse",
+    name: "Events",
+    key: "events",
+    icon: <Icon fontSize="small">list</Icon>,
+    route: "/events",
+    component: <Events />,
   },
 ];
 

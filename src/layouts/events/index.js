@@ -25,18 +25,18 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
 
 // Dashboard components
-import Calendar from 'layouts/dashboard/components/calendar'
+import Projects from "layouts/events/components/Projects";
 
-function Dashboard() {
+function Events() {
   return (
     <DashboardLayout>
       <DashboardNavbar />
       <MDBox>
-        <Calendar />
+        <Projects />
       </MDBox>
       <Footer />
     </DashboardLayout>
   );
 }
 
-export default Dashboard;
+export default Events;
