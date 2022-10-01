@@ -72,8 +72,8 @@ export default function data() {
   return {
     columns: [
       { Header: "companies", accessor: "companies", width: "45%", align: "left" },
-      { Header: "members", accessor: "members", width: "10%", align: "left" },
-      { Header: "budget", accessor: "budget", align: "center" },
+      { Header: "employees", accessor: "members", width: "10%", align: "left" },
+      { Header: "total hours", accessor: "budget", align: "center" },
       { Header: "completion", accessor: "completion", align: "center" },
     ],
 
@@ -92,7 +92,7 @@ export default function data() {
         ),
         budget: (
           <MDTypography variant="caption" color="text" fontWeight="medium">
-            $14,000
+            100
           </MDTypography>
         ),
         completion: (
@@ -113,7 +113,7 @@ export default function data() {
         ),
         budget: (
           <MDTypography variant="caption" color="text" fontWeight="medium">
-            $3,000
+            Not set
           </MDTypography>
         ),
         completion: (
@@ -134,7 +134,7 @@ export default function data() {
         ),
         budget: (
           <MDTypography variant="caption" color="text" fontWeight="medium">
-            Not set
+            80
           </MDTypography>
         ),
         completion: (
@@ -157,7 +157,7 @@ export default function data() {
         ),
         budget: (
           <MDTypography variant="caption" color="text" fontWeight="medium">
-            $20,500
+            20
           </MDTypography>
         ),
         completion: (
@@ -175,7 +175,7 @@ export default function data() {
         ),
         budget: (
           <MDTypography variant="caption" color="text" fontWeight="medium">
-            $500
+            50
           </MDTypography>
         ),
         completion: (
@@ -196,7 +196,7 @@ export default function data() {
         ),
         budget: (
           <MDTypography variant="caption" color="text" fontWeight="medium">
-            $2,000
+            30
           </MDTypography>
         ),
         completion: (
