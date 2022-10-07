@@ -191,7 +191,7 @@ export default function App() {
       <Routes>
         {getRoutes(routes)}
         <Route path="/event" element={<Event />} />
-        <Route path="*" element={<Navigate to="/dashboard" />} />
+        <Route path="*" element={<Navigate to="/signin" />} />
       </Routes>
     </ThemeProvider>
   );

@@ -38,6 +38,9 @@ Coded by www.creative-tim.com
 // Material Dashboard 2 React layouts
 import Dashboard from "layouts/dashboard";
 import Events from "layouts/events";
+import SignIn from "layouts/authentication/sign-in";
+import SignUp from "layouts/authentication/sign-up";
+import Users from "layouts/tables";
 
 // @mui icons
 import Icon from "@mui/material/Icon";
@@ -58,6 +61,30 @@ const routes = [
     icon: <Icon fontSize="small">list</Icon>,
     route: "/events",
     component: <Events />,
+  },
+  {
+    type: "none",
+    name: "Login",
+    key: "login",
+    icon: <></>,
+    route: "/signin",
+    component: <SignIn />,
+  },
+  {
+    type: "none",
+    name: "signup",
+    key: "signup",
+    icon: <></>,
+    route: "/signup",
+    component: <SignUp />,
+  },
+  {
+    type: "collapse",
+    name: "Users",
+    key: "users",
+    icon: <Icon fontSize="small">list</Icon>,
+    route: "/users",
+    component: <Users />,
   },
 ];
 

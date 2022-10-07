@@ -56,9 +56,9 @@ export default function data() {
   return {
     columns: [
       { Header: "project", accessor: "project", width: "30%", align: "left" },
-      { Header: "budget", accessor: "budget", align: "left" },
-      { Header: "status", accessor: "status", align: "center" },
-      { Header: "completion", accessor: "completion", align: "center" },
+      { Header: "status", accessor: "status", align: "left" },
+      { Header: "Rate", accessor: "budget", align: "right" },
+      { Header: "Total Hours", accessor: "completion", align: "right" },
       { Header: "action", accessor: "action", align: "center" },
     ],
 
@@ -75,7 +75,9 @@ export default function data() {
             working
           </MDTypography>
         ),
-        completion: <Progress color="info" value={60} />,
+        completion: <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
+            500 Hrs
+          </MDTypography>,
         action: (
           <MDTypography component="a" href="#" color="text">
             <Icon>more_vert</Icon>
@@ -94,7 +96,9 @@ export default function data() {
             done
           </MDTypography>
         ),
-        completion: <Progress color="success" value={100} />,
+        completion: <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
+            500 Hrs
+          </MDTypography>,
         action: (
           <MDTypography component="a" href="#" color="text">
             <Icon>more_vert</Icon>
@@ -113,7 +117,9 @@ export default function data() {
             canceled
           </MDTypography>
         ),
-        completion: <Progress color="error" value={30} />,
+        completion: <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
+            400 Hrs
+          </MDTypography>,
         action: (
           <MDTypography component="a" href="#" color="text">
             <Icon>more_vert</Icon>
@@ -132,7 +138,9 @@ export default function data() {
             working
           </MDTypography>
         ),
-        completion: <Progress color="info" value={80} />,
+        completion: <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
+            300 Hrs
+          </MDTypography>,
         action: (
           <MDTypography component="a" href="#" color="text">
             <Icon>more_vert</Icon>
@@ -151,7 +159,9 @@ export default function data() {
             canceled
           </MDTypography>
         ),
-        completion: <Progress color="error" value={0} />,
+        completion: <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
+            200 Hrs
+          </MDTypography>,
         action: (
           <MDTypography component="a" href="#" color="text">
             <Icon>more_vert</Icon>
@@ -170,7 +180,9 @@ export default function data() {
             done
           </MDTypography>
         ),
-        completion: <Progress color="success" value={100} />,
+        completion: <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
+            100 Hrs
+          </MDTypography>,
         action: (
           <MDTypography component="a" href="#" color="text">
             <Icon>more_vert</Icon>
