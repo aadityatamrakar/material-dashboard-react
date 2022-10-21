@@ -40,8 +40,10 @@ import Dashboard from "layouts/dashboard";
 import Events from "layouts/events";
 import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
-import Users from "layouts/tables";
-
+import Users from "layouts/users";
+import Logout from "layouts/logout";
+import EmployeeForm from "layouts/employee_add"
+import UserForm from "layouts/user_add"
 // @mui icons
 import Icon from "@mui/material/Icon";
 
@@ -79,12 +81,36 @@ const routes = [
     component: <SignUp />,
   },
   {
+    type: "none",
+    name: "employee_register",
+    key: "employee_register",
+    icon: <></>,
+    route: "/employee-form",
+    component: <EmployeeForm />,
+  },
+  {
+    type: "none",
+    name: "user_add",
+    key: "user_add",
+    icon: <></>,
+    route: "/user-form",
+    component: <UserForm />,
+  },
+  {
     type: "collapse",
     name: "Users",
     key: "users",
-    icon: <Icon fontSize="small">list</Icon>,
+    icon: <Icon fontSize="small">people</Icon>,
     route: "/users",
     component: <Users />,
+  },
+  {
+    type: "collapse",
+    name: "Logout",
+    key: "logout",
+    icon: <Icon fontSize="small">exit_to_app</Icon>,
+    route: "/logout",
+    component: <Logout />,
   },
 ];
 

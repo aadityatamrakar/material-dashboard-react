@@ -28,10 +28,21 @@ import Footer from "examples/Footer";
 import DataTable from "examples/Tables/DataTable";
 
 // Data
-import authorsTableData from "layouts/tables/data/authorsTableData";
-import projectsTableData from "layouts/tables/data/projectsTableData";
+import authorsTableData from "layouts/users/data/authorsTableData";
+import projectsTableData from "layouts/users/data/projectsTableData";
+import MDButton from "components/MDButton";
+import { Icon } from "@mui/material";
+import { Link } from "react-router-dom";
+
+import {
+  useMaterialUIController
+} from './../../context'
+import { Routes, Route, useNavigate } from 'react-router-dom';
 
 function Tables() {
+  const navigate = useNavigate();
+  const [controller, dispatch] = useMaterialUIController();
+
   const { columns, rows } = authorsTableData();
   const { columns: pColumns, rows: pRows } = projectsTableData();
 
@@ -54,6 +65,22 @@ function Tables() {
               >
                 <MDTypography variant="h6" color="white">
                   Managers & Supervisers
+                  <MDButton
+                    component={Link}
+                    to="/user-form"
+                    variant="contained"
+                    color="white"
+                    size="small"
+                    rounded
+                    sx={{
+                      fontWeight: 500,
+                      fontSize: "0.875rem",
+                      ml: 2
+                    }}
+
+                  >
+                    Add New
+                  </MDButton>
                 </MDTypography>
               </MDBox>
               <MDBox pt={3}>
@@ -81,8 +108,30 @@ function Tables() {
               >
                 <MDTypography variant="h6" color="white">
                   Employees
+
+                  <MDButton
+                    component={Link}
+                    to="/employee-form"
+                    variant="contained"
+                    color="white"
+                    size="small"
+                    rounded
+                    sx={{
+                      fontWeight: 500,
+                      fontSize: "0.875rem",
+                      ml: 2
+                    }}
+
+                  >
+                    Add New
+                  </MDButton>
                 </MDTypography>
               </MDBox>
+              {/* <MDBox color="text">
+                <Icon sx={{ cursor: "pointer", fontWeight: "bold" }} fontSize="small" onClick={null}>
+                  more_vert
+                </Icon>
+              </MDBox> */}
               <MDBox pt={3}>
                 <DataTable
                   table={{ columns: pColumns, rows: pRows }}

@@ -32,6 +32,21 @@ import BasicLayout from "layouts/authentication/components/BasicLayout";
 // Images
 import bgImage from "assets/images/bg-sign-up-cover.jpeg";
 
+let formData = {
+  name: "",
+  email: "",
+  password: "",
+}
+
+function handleChange(event) {
+  formData[event.target.name] = event.target.value;
+}
+
+function register() {
+  console.log(formData, 'register');
+  // alert("register");
+}
+
 function Cover() {
   return (
     <BasicLayout image={bgImage}>
@@ -57,16 +72,21 @@ function Cover() {
         <MDBox pt={4} pb={3} px={3}>
           <MDBox component="form" role="form">
             <MDBox mb={2}>
-              <MDInput type="text" label="Name" variant="standard" fullWidth />
+              <MDInput name="name" type="text" onChange={handleChange} label="Name" variant="standard" fullWidth />
             </MDBox>
             <MDBox mb={2}>
-              <MDInput type="email" label="Email" variant="standard" fullWidth />
+              <MDInput name="email" type="email" onChange={handleChange} label="Email" variant="standard" fullWidth />
             </MDBox>
             <MDBox mb={2}>
-              <MDInput type="password" label="Password" variant="standard" fullWidth />
+              <MDInput name="password" type="password" onChange={handleChange} label="Password" variant="standard" fullWidth />
             </MDBox>
             <MDBox mt={4} mb={1}>
-              <MDButton component={Link} to="/dashboard" variant="gradient" color="info" fullWidth>
+              <MDButton
+                onClick={register}
+                to="/dashboard"
+                variant="gradient"
+                color="info"
+                fullWidth>
                 sign Up
               </MDButton>
             </MDBox>

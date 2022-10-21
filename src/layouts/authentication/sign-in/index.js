@@ -14,9 +14,16 @@ Coded by www.creative-tim.com
 */
 
 import { useState } from "react";
+// import fetch api from root folder
+import api from "./../../../fetch-api";
+import {
+  useMaterialUIController,
+  setLoginMode
+} from "./../../../context";
 
 // react-router-dom components
-import { Link } from "react-router-dom";
+import { Routes, Link, Route, useNavigate } from 'react-router-dom';
+
 
 // @mui material components
 import Card from "@mui/material/Card";
@@ -34,6 +41,7 @@ import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import MDInput from "components/MDInput";
 import MDButton from "components/MDButton";
+// import { Redirect } from 'react-router-dom';
 
 // Authentication layout components
 import BasicLayout from "layouts/authentication/components/BasicLayout";
@@ -42,9 +50,41 @@ import BasicLayout from "layouts/authentication/components/BasicLayout";
 import bgImage from "assets/images/bg-sign-in-basic.jpeg";
 
 function Basic() {
+  // create state loginRedirect 
+  const [loginRedirect, setLoginRedirect] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
-
+  const [controller, dispatch] = useMaterialUIController();
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
+
+  // create form data state
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+
+  function handleChange(event) {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+    });
+  }
+
+  const navigate = useNavigate();
+
+  async function handleSignin() {
+    console.log(formData, 'signin');
+    // call signin api
+    let resp = await api.signin(formData);
+    // console.log(resp, 'resp');
+    if (resp.statusCode == 400) {
+      alert("Invalid email or password.");
+    } else if (resp.statusCode == 200) {
+      setLoginMode(dispatch, true);
+      navigate('/dashboard');
+    }
+  }
+
 
   return (
     <BasicLayout image={bgImage}>
@@ -67,18 +107,19 @@ function Basic() {
         <MDBox pt={4} pb={3} px={3}>
           <MDBox component="form" role="form">
             <MDBox mb={2}>
-              <MDInput type="email" label="Email" fullWidth />
+              <MDInput name="email" onChange={handleChange} type="email" label="Email" fullWidth />
             </MDBox>
             {/* <MDBox mb={2}>
               <MDInput type="tel" label="Mobile" fullWidth />
             </MDBox> */}
             <MDBox mb={2}>
-              <MDInput type="password" label="Password" fullWidth />
+              <MDInput name="password" onChange={handleChange} type="password" label="Password" fullWidth />
             </MDBox>
             <MDBox mt={4} mb={1}>
-              <MDButton component={Link} to="/dashboard" variant="gradient" color="info" fullWidth>
+              <MDButton onClick={handleSignin} to="/dashboard" variant="gradient" color="info" fullWidth>
                 sign in
               </MDButton>
+              {loginRedirect ? (<Link to="/dashboard" />) : <></>}
             </MDBox>
             <MDBox mt={3} mb={1} textAlign="center">
               <MDTypography variant="button" color="text">

@@ -62,6 +62,9 @@ function reducer(state, action) {
     case "DARKMODE": {
       return { ...state, darkMode: action.value };
     }
+    case "SIGNIN": {
+      return { ...state, loggedIn: action.value };
+    }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
     }
@@ -81,9 +84,22 @@ function MaterialUIControllerProvider({ children }) {
     direction: "ltr",
     layout: "dashboard",
     darkMode: false,
+    loggedIn: false,
   };
 
-  const [controller, dispatch] = useReducer(reducer, initialState);
+  // get the local storage values
+  const controllerData = localStorage.getItem("controller");
+  let controllerState = initialState;
+  if (controllerData) {
+    controllerState = JSON.parse(controllerData);
+  }
+
+  const [controller, dispatch] = useReducer(reducer, controllerState);
+
+  // save the state to local storage
+  useMemo(() => {
+    localStorage.setItem("controller", JSON.stringify(controller));
+  }, [controller]);
 
   const value = useMemo(() => [controller, dispatch], [controller, dispatch]);
 
@@ -119,6 +135,7 @@ const setOpenConfigurator = (dispatch, value) => dispatch({ type: "OPEN_CONFIGUR
 const setDirection = (dispatch, value) => dispatch({ type: "DIRECTION", value });
 const setLayout = (dispatch, value) => dispatch({ type: "LAYOUT", value });
 const setDarkMode = (dispatch, value) => dispatch({ type: "DARKMODE", value });
+const setLoginMode = (dispatch, value) => dispatch({ type: "SIGNIN", value });
 
 export {
   MaterialUIControllerProvider,
@@ -133,4 +150,5 @@ export {
   setDirection,
   setLayout,
   setDarkMode,
+  setLoginMode,
 };
